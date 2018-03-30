@@ -47,7 +47,6 @@ def load_video(folder):
         '''
     video = []
     for filename in os.listdir(folder):
-#        img = load_img(folder,filename)
         img = cv2.imread(os.path.join(folder,filename),0)
         if img is not None:
             video.append(img)
@@ -135,7 +134,6 @@ def overlap(mask,of_mask):
         '''
     overlap_m = (mask == of_mask)
     mask[overlap_m] = 3
-    
     return mask
 
 

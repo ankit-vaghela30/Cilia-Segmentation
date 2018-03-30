@@ -4,6 +4,24 @@ import hastings.preprocessing as pr
 import hastings.io_support as io
 
 def optical_flow(video, blur=5, threshold=110):
+    '''
+        This is for computing the optical flow of a given video.
+        And by thresholding the images, only areas with high motion speed will be kept.
+        
+        Args:
+            video: the input video
+                   type: ndarray, shape: (frames,dim1,dim2)
+        
+            blur: size of median filter
+                  type: INT
+        
+            threshold: the threshold
+                       type: INT
+        
+        Return:
+            final_contour: the contour image
+                           type: ndarray, shape: (dim1, dim2)
+        '''
     frame_inital = video[0]
     h = np.zeros_like(frame_inital)
     h = np.expand_dims(h, axis=2)
@@ -31,7 +49,6 @@ def optical_flow(video, blur=5, threshold=110):
 
         contour_imgs += np.asarray(gray_img_thr)
         frame_inital = next
-    
     
     _,final_contour = cv2.threshold(contour_imgs,225,255,cv2.THRESH_BINARY)
     mask = io.contour2mask(final_contour)
