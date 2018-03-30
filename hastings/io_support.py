@@ -2,6 +2,13 @@ import cv2
 import os
 import numpy as np
 
+def load_img(img_parent_path,hash):
+    '''
+        Load one image
+        '''
+    img = cv2.imread(os.path.join(img_parent_path,hash+'.png'),0)
+    return img
+
 def load_all_video(hash_file_path,video_parent_path):
     '''
         Load all video from provided txt file that stores all the hashes
@@ -40,6 +47,7 @@ def load_video(folder):
         '''
     video = []
     for filename in os.listdir(folder):
+#        img = load_img(folder,filename)
         img = cv2.imread(os.path.join(folder,filename),0)
         if img is not None:
             video.append(img)
@@ -62,10 +70,10 @@ def save_img(folder_name,hash,img):
         Args:
             folder_name: name of the folder for storing pictures
                          type: STRING
-                         
+        
             hash: hash name for each picture
                   type: STRING
-                  
+        
             img: the picture to store
                  type: ndarray shape:(dim1,dim2)
         '''
@@ -82,7 +90,7 @@ def play(name,image):
     cv2.imshow(name,image)
     cv2.waitKey(10)
 
-def show(image):
+def show(name,image):
     '''
         Show the image
         
@@ -90,7 +98,7 @@ def show(image):
             image: each frame of the video
                    type: ndarray, shape: (dim1,dim2)
         '''
-    cv2.imshow('frame4',image)
+    cv2.imshow(name,image)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
@@ -107,9 +115,28 @@ def contour2mask(contour):
                      type: ndarray, shape: (dim1,dim2)
         '''
     contour[contour == 255] = 2
+    contour[contour == 0] = 255
     return contour
 
-
+def overlap(mask,of_mask):
+    '''
+        Find the overlapping between ground truth and mask from optical flow
+        
+        Args:
+            mask: ground truth mask
+                  type: ndarray, shape: (dim1,dim2)
+                  
+            of_mask: mask from optical flow
+                     type: ndarray, shape: (dim1,dim2)
+                     
+        Return:
+            mask: mask with 4 labels
+                  type: ndarray, shape: (dim1,dim2)
+        '''
+    overlap_m = (mask == of_mask)
+    mask[overlap_m] = 3
+    
+    return mask
 
 
 

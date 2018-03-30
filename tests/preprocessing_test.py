@@ -3,7 +3,6 @@ import hastings.preprocessing as pre
 import numpy as np
 
 video_path = '../test/img_data/0bd52e3901cbbf4e57bd8bde4e0f7d5ba7bfc2b3b1dc4ce0dbf437d2ad374c5a'
-#full_path = '../test/img_data/'
 
 video = io.load_video(video_path)
 frame = video[0]
