@@ -2,7 +2,12 @@ import hastings.io_support as io
 import hastings.preprocessing as pre
 import numpy as np
 
+#<<<<<<< optical_flow
 video_path = '../train/img_data/22e2bda8d3051a3ec1e2a6ee8834301b8587092b9e4a43afccdb4b6bf84ff727'
+#=======
+video_path = '../test/img_data/0bd52e3901cbbf4e57bd8bde4e0f7d5ba7bfc2b3b1dc4ce0dbf437d2ad374c5a'
+
+#>>>>>>> master
 video = io.load_video(video_path)
 frame = video[0]
 
