@@ -4,7 +4,18 @@ import numpy as np
 
 def load_img(img_parent_path,hash):
     '''
-        Load one image
+        Load mask image
+        
+        Args:
+            img_parent_path: parent path of the image
+                             type: STRING
+        
+            hash: hash name of the mask image
+                  type: STRING
+        
+        Return:
+            img: the mask image
+                 type: ndarray, shape: (dim1,dim2)
         '''
     img = cv2.imread(os.path.join(img_parent_path,hash+'.png'),0)
     return img
@@ -135,7 +146,3 @@ def overlap(mask,of_mask):
     overlap_m = (mask == of_mask)
     mask[overlap_m] = 3
     return mask
-
-
-
-
