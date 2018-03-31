@@ -1,86 +1,86 @@
 import cv2
 
-def threshold(frame,t):
+def threshold(image,t):
     '''
-        Setting threhold to the video. Turn pixels below threshold black.
+        Setting threhold to the image. Turn pixels below threshold black.
         
         Args:
-            video: the input grayscale video
+            image: the input grayscale image
                    type: ndarray, shape: (dim1,dim2)
             t: the threshold
                type: INT
         
         Return:
-            new_video: the transformed video
+            new_image: the transformed image
         '''
-    _, new_frame = cv2.threshold(frame,t,255,cv2.THRESH_BINARY)
-    return new_frame
+    _, new_image = cv2.threshold(image,t,255,cv2.THRESH_BINARY)
+    return new_image
 
-def blur(video,b):
+def blur(image,b):
     '''
-        Smoothing the video
+        Smoothing the image
         
         Args:
-            video: the input video
+            image: the input image
                    type: ndarray, shape: (dim1,dim2)
             b: size of median filter
             
         Return:
-            the transformed video
+            the transformed image
         '''
-    return cv2.medianBlur(video,b)
+    return cv2.medianBlur(image,b)
 
-def gray2rgb(video):
+def gray2rgb(image):
     '''
-        Transform grayscale video to RGB video
+        Transform grayscale image to RGB image
         
         Args:
-            video: the input grayscale video
+            image: the input grayscale image
                    type: ndarray, shape: (dim1,dim2)
                    
         Return:
-            the transformed RGB video
+            the transformed RGB image
         '''
-    return cv2.cvtColor(video,cv2.COLOR_GRAY2RGB)
+    return cv2.cvtColor(image,cv2.COLOR_GRAY2RGB)
 
-def rgb2gray(video):
+def rgb2gray(image):
     '''
-        Transform RGB video to grayscale video
+        Transform RGB image to grayscale image
         
         Args:
-            video: the input RGB video
+            image: the input RGB image
                    type: ndarray, shape: (dim1,dim2)
                    
         Return:
-            the transformed grayscale video
+            the transformed grayscale image
         '''
-    return cv2.cvtColor(video,cv2.COLOR_BGR2GRAY)
+    return cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
 
-def rgb2hsv(video):
+def rgb2hsv(image):
     '''
-        Transform BGR video to HSV video
+        Transform BGR image to HSV image
         
         Args:
-            video: the input RGB video
+            image: the input RGB image
                    type: ndarray, shape: (dim1,dim2)
         
         Return:
-            the transformed HSV video
+            the transformed HSV image
         '''
-    return cv2.cvtColor(video,cv2.COLOR_BGR2HSV)
+    return cv2.cvtColor(image,cv2.COLOR_BGR2HSV)
 
-def hsv2rgb(video):
+def hsv2rgb(image):
     '''
-        Transform HSV video to RGB video
+        Transform HSV image to RGB image
         
         Args:
-            video: the input HSV video
+            image: the input HSV image
                    type: ndarray, shape: (dim1,dim2)
         
         Return:
-            the transformed RGB video
+            the transformed RGB image
         '''
-    return cv2.cvtColor(video,cv2.COLOR_HSV2BGR)
+    return cv2.cvtColor(image,cv2.COLOR_HSV2BGR)
 
 
 
