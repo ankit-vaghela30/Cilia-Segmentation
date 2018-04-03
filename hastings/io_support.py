@@ -147,6 +147,7 @@ def overlap(mask,of_mask):
     mask[overlap_m] = 3
     return mask
 
+
 def modifyMask(path,mask_hash):
     '''
     Transform mask to a new mask which only contains cilia information marked
