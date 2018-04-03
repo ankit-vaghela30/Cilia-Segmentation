@@ -160,13 +160,10 @@ def modifyMask(path,mask_hash):
     Return:
         The new grayscale mask image that only contains cilia
     '''
-    mask = load_img(path,mask_hash)
-    newMask = np.zeros(mask.shape)
-    for i in range(mask.shape[0]):
-        for j in range(mask.shape[1]):
-            if(mask[i][j]==2):
-                newMask[i][j]=int(1)
-
+    newMask = load_img(path,mask_hash)
+    newMask[newMask==1] = 0
+    newMask[newMask==2] = 1
+    
     return newMask
 
 def make_data(data_path,hashword,numImages):
