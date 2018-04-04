@@ -1,5 +1,7 @@
 import cv2
 
+import numpy as np
+
 def threshold(image,t):
     '''
         Setting threhold to the image. Turn pixels below threshold black.
@@ -83,12 +85,28 @@ def hsv2rgb(image):
     return cv2.cvtColor(image,cv2.COLOR_HSV2BGR)
 
 
+def augment_data(image_path,mask_path):
+    '''
+    loads images and mask as a numpy array, reshapes images and mask to 4 channels
+    and normalzes image data
+    
+    Args:
+        image_path:the path of the npy array containing images
+                   type: String
+        mask_path:      the path to npy array containing masks
+                   type: String
+    Return:
+        numpy array of augmented mask and image
+    '''
+    image_array = np.load(image_path)
+    mask_array = np.load(mask_path)
+    
+    images = image_array[...,np.newaxis]
+    masks = mask_array[...,np.newaxis]
 
+    image_data_array = images.astype('float32')
+    mask_images = masks.astype('float32')
+    data_images = image_data_array - np.mean(image_data_array)
+    data_images = data_images / np.std(image_data_array)
 
-
-
-
-
-
-
-
+    return data_images, mask_images

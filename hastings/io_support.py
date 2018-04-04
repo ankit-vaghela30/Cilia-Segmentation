@@ -146,3 +146,53 @@ def overlap(mask,of_mask):
     overlap_m = (mask == of_mask)
     mask[overlap_m] = 3
     return mask
+
+
+def modifyMask(path,mask_hash):
+    '''
+    Transform mask to a new mask which only contains cilia information marked
+    as 1 and the cell region and background is changed to 0.
+    Args:
+        path: the path of the mask image
+              type: String
+        hash: the hash of mask
+              type: String
+
+    Return:
+        The new grayscale mask image that only contains cilia
+    '''
+    newMask = load_img(path,mask_hash)
+    newMask[newMask==1] = 0
+    newMask[newMask==2] = 1
+    
+    return newMask
+
+def make_data(data_path,hashword,numImages):
+    '''
+    Reads image from a folder and returns a list of a specific number of images
+    which is specified by numImages
+    Args:
+        path:      the path of the folder consisting of image
+                   type: String
+        hash:      the folder name
+                   type: String
+        numImages: the number of images to be read from folder
+                   type: int
+    Return:
+        list of read images from the folder
+    '''
+    images = sorted(os.listdir(data_path+"/"+hashword))
+    images = images[0:numImages]
+    total = len(images)
+    imgs = []
+    imgs_mask = []
+
+    for image_name in images:
+        img = load_img(data_path+"/"+hashword,image_name.split(".")[0])
+        img_msk = modifyMask(data_path+"/masks/",hashword)
+        img_msk = np.array([img_msk])
+        img = np.array([img])
+        imgs.append(img[0])
+        imgs_mask.append(img_msk[0])
+    
+    return imgs,imgs_mask
