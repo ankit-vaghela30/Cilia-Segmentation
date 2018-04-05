@@ -167,7 +167,7 @@ def modifyMask(path,mask_hash):
     
     return newMask
 
-def make_data(data_path,hashword,numImages):
+def make_data(data_path,hashword,numImages,mode):
     '''
     Reads image from a folder and returns a list of a specific number of images
     which is specified by numImages
@@ -178,6 +178,7 @@ def make_data(data_path,hashword,numImages):
                    type: String
         numImages: the number of images to be read from folder
                    type: int
+        mode:      training or testing?
     Return:
         list of read images from the folder
     '''
@@ -189,10 +190,16 @@ def make_data(data_path,hashword,numImages):
 
     for image_name in images:
         img = load_img(data_path+"/"+hashword,image_name.split(".")[0])
-        img_msk = modifyMask(data_path+"/masks/",hashword)
-        img_msk = np.array([img_msk])
         img = np.array([img])
-        imgs.append(img[0])
-        imgs_mask.append(img_msk[0])
+        img = resize(img[0],(256,256),preserve_range=True)
+        imgs.append(img)
+        if(mode=="train"):
+            img_msk = modifyMask(data_path+"/masks/",hashword)
+            img_msk = np.array([img_msk])
+            img_msk = resize(img_msk[0],(256,256),preserve_range=True)
+            imgs_mask.append(img_msk)
     
-    return imgs,imgs_mask
+    if(mode=="train"):
+        return imgs,imgs_mask
+    else:
+        return imgs

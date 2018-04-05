@@ -14,32 +14,39 @@ data_file= args.file_path
 data_path = args.data_path
 numImages= args.num_images
 
-def prepare_data(data_file,data_path,numImages):
+def prepare_data(data_file,data_path,numImages,mode):
     file = open(data_file)
     data_image=[]
     data_mask=[]
     i=0
     for hashword in file:
         i=i+1
-        image, mask = make_data(data_path,hashword.split("\n")[0],16)
-        data_image.extend(image)
-        data_mask.extend(mask)
+        if (mode=="train"):
+            image, mask = make_data(data_path,hashword.split("\n")[0],numImages,mode)
+            data_image.extend(image)
+            data_mask.extend(mask)
+        if(mode=="test"):
+            image = make_data(data_path,hashword.split("\n")[0],numImages,mode)
+            data_image.extend(image)
         print("--- Number of folders read: ",str(i))
     data_image=np.array(data_image)
     
-    data_mask = np.array(data_mask)
-    return data_image, data_mask
+    if (mode=="train"):
+        data_mask = np.array(data_mask)
+        return data_image, data_mask
+    else:
+        return data_image
 
 if(args.mode=="train"):
-    train_data_image,train_data_mask = prepare_data(data_file,data_path,numImages)
+    train_data_image,train_data_mask = prepare_data(data_file,data_path,numImages,args.mode)
     np.save(args.save_path+'train_data_mask.npy',train_data_mask)
     np.save(args.save_path+'train_data_image.npy',train_data_image)
     print('Files saved as train_data_image.npy and train_data_mask.npy')
 
 elif(args.mode=="test"):
-    test_data_image,test_data_mask = prepare_data(data_file,data_path,numImages)
-    np.save(args.save_path+ 'test_data_mask.npy', test_data_mask)
-    print('Files saved as test_data_image.npy and test_data_mask.npy')
+    test_data_image = prepare_data(data_file,data_path,numImages,args.mode)
+    np.save(args.save_path+ 'test_data.npy', test_data_image)
+    print('Files saved as test_data_image.npy')
 
 else:
     print("Please Choose correct mode")
