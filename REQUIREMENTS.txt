@@ -1,0 +1,7 @@
+# This file may be used to create an environment using:
+# $ conda create --name <env> --file <this file>
+# platform: osx-64
+numpy=1.12.1=py36_blas_openblas_201
+opencv=3.3.0=py36_blas_openblas_203
+pytest=3.4.1=py36_0
+python=3.6.4=0

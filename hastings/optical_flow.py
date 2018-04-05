@@ -7,6 +7,7 @@ def optical_flow(video, blur=5, threshold=110):
     '''
         This is for computing the optical flow of a given video.
         And by thresholding the images, only areas with high motion speed will be kept.
+        This part is modified from this tutorial: https://docs.opencv.org/3.3.1/db/d7f/tutorial_js_lucas_kanade.html
         
         Args:
             video: the input video
@@ -55,19 +56,29 @@ def optical_flow(video, blur=5, threshold=110):
     
     return final_contour
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+def of2prediction(output_folder,hash_path,data_folder,threshold_value=80):
+    '''
+        This is for doing cilia predictions with optical flow only.
+        
+        Args:
+            output_folder: folder path where output will be stored in
+                           type: STRING
+        
+            hash_path: path for hash file
+                       type: STRING
+        
+            data_folder: path for folder where video data are stored in
+                         type: STRING
+        
+            threshold_value: threshold value to be passed into optical flow
+                             type: INT
+        '''
+    
+    io.mkdir(output_folder)
+    all_videos_dict = io.load_all_video(hash_path, data_folder)
+    
+    for hash in all_videos_dict:
+        video = all_videos_dict[hash]
+        mask = optical_flow(video,threshold=threshold_value)
+        
+        io.save_img(output_folder,hash,mask)
