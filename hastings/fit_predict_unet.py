@@ -19,8 +19,10 @@ parser.add_argument('--model_path',type=str,help='path of saved model')
 parser.add_argument('--save_path',type=str,help='path to save model or prediction')
 args = parser.parse_args()
 
-#Augmenting data
-images,mask = augment_data(args.image_path,args.mask_path)
+if(args.mode=="fit"):
+    images,mask = augment_data(args.image_path,args.mask_path,args.mode)
+if(args.mode=="predict"):
+    images = augment_data(args.image_path,args.mask_path,args.mode)
 
 def fit(training_images,mask_images,save_path):
     model = unet()
@@ -33,7 +35,7 @@ def predict(testing_images,model_path,save_result_path):
     model=unet()
     model.load_weights(model_path)
 
-    prediction = model.predict(testing_images, verbose=1)
+    prediction = model.predict(testing_images, batch_size=4,verbose=1)
     np.save(save_result_path+'/prediction.npy', prediction)
 
 if(args.mode=="fit"):
