@@ -5,13 +5,13 @@ import numpy as np
 def threshold(image,t):
     '''
         Setting threhold to the image. Turn pixels below threshold black.
-        
+
         Args:
             image: the input grayscale image
                    type: ndarray, shape: (dim1,dim2)
             t: the threshold
                type: INT
-        
+
         Return:
             new_image: the transformed image
         '''
@@ -21,12 +21,12 @@ def threshold(image,t):
 def blur(image,b):
     '''
         Smoothing the image
-        
+
         Args:
             image: the input image
                    type: ndarray, shape: (dim1,dim2)
             b: size of median filter
-            
+
         Return:
             the transformed image
         '''
@@ -35,11 +35,11 @@ def blur(image,b):
 def gray2rgb(image):
     '''
         Transform grayscale image to RGB image
-        
+
         Args:
             image: the input grayscale image
                    type: ndarray, shape: (dim1,dim2)
-                   
+
         Return:
             the transformed RGB image
         '''
@@ -48,11 +48,11 @@ def gray2rgb(image):
 def rgb2gray(image):
     '''
         Transform RGB image to grayscale image
-        
+
         Args:
             image: the input RGB image
                    type: ndarray, shape: (dim1,dim2)
-                   
+
         Return:
             the transformed grayscale image
         '''
@@ -61,11 +61,11 @@ def rgb2gray(image):
 def rgb2hsv(image):
     '''
         Transform BGR image to HSV image
-        
+
         Args:
             image: the input RGB image
                    type: ndarray, shape: (dim1,dim2)
-        
+
         Return:
             the transformed HSV image
         '''
@@ -74,11 +74,11 @@ def rgb2hsv(image):
 def hsv2rgb(image):
     '''
         Transform HSV image to RGB image
-        
+
         Args:
             image: the input HSV image
                    type: ndarray, shape: (dim1,dim2)
-        
+
         Return:
             the transformed RGB image
         '''
@@ -89,7 +89,7 @@ def augment_data(image_path,mask_path,mode):
     '''
     loads images and mask as a numpy array, reshapes images and mask to 4 channels
     and normalzes image data
-    
+
     Args:
         image_path:the path of the npy array containing images
                    type: String
@@ -98,12 +98,12 @@ def augment_data(image_path,mask_path,mode):
     Return:
         numpy array of augmented mask and image
     '''
-    image_array = np.load(image_path)    
+    image_array = np.load(image_path)
     images = image_array[...,np.newaxis]
     image_data_array = images.astype('float32')
     data_images = image_data_array - np.mean(image_data_array)
     data_images = data_images / np.std(image_data_array)
-    
+
     if(mode=="fit"):
         mask_array = np.load(mask_path)
         masks = mask_array[...,np.newaxis]
@@ -111,3 +111,20 @@ def augment_data(image_path,mask_path,mode):
         return data_images, mask_images
     else:
         return data_images
+
+def convert_images_gray2rgb(images):
+    '''
+        Converts array of gray images to rgb and returns numpy array of rgb images
+
+        Args:
+            images: images in numpy array which shall be converted to rgb
+
+        Return:
+            numpy array of rgb images
+    '''
+
+    images_array= []
+    for image in images:
+        images_array.append(gray2rgb(image))
+
+    return np.array(images_array)
