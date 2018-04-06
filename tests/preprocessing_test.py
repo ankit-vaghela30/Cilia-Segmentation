@@ -12,12 +12,12 @@ video = io.load_video(video_path)
 frame = video[0]
 
 def test_threshold():
-    
+
     t_video = pre.threshold(frame,100)
     assert np.shape(t_video) == (256, 256)
 
 def test_blur():
-    
+
     b_video = pre.blur(frame,5)
     assert np.shape(b_video) == (256, 256)
 
