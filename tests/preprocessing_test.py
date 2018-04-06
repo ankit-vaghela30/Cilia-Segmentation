@@ -10,12 +10,12 @@ video = io.load_video(video_path)
 frame = video[0]
 
 def test_threshold():
-    
+
     t_video = pre.threshold(frame,100)
     assert np.shape(t_video) == (256, 256)
 
 def test_blur():
-    
+
     b_video = pre.blur(frame,5)
     assert np.shape(b_video) == (256, 256)
 
@@ -36,3 +36,8 @@ def test_convertion():
 def test_augment_data(npy_image_path,None,"predict"):
     images = pre.augment_data(npy_image_path,None,"predict")
     assert np.shape(images) == (1824,256,256,1)
+
+def test_convert_images_gray2rgb(npy_image_path):
+    images = np.load(npy_image_path)
+    rgb_images = pre.convert_images_gray2rgb(images)
+    assert np.shape(rgb_images) == (images.shape[0], 256, 256, 3)
