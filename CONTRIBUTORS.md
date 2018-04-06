@@ -2,7 +2,12 @@
 (Ordered alphabetically)
 
 **Ankit Vaghela** - [ankit-vaghela30](https://github.com/ankit-vaghela30)
-- 
+- Created prerocessing method to support Tiramisu implementation
+- Created test method
+- Created Tiramisu model
+- Figured out how to add GPU on Google Cloud Platform
+- Wiki on adding GPU to Google Cloud Platform
+- Wiki on Tiramisu and Unet
 
 **Vyom Shrivastava** - [vyom1911](https://github.com/vyom1911)
 - Created some IO operations and preprocessing to support Unet and tiramisu
@@ -10,7 +15,6 @@
 - Created unet model
 - Created fit and predict method for Unet
 - ReadMe
-- Wiki on Unet
 
 
 **Weiwen Xu** - [WeiwenXu21](https://github.com/WeiwenXu21)
