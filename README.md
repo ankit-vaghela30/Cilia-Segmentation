@@ -25,8 +25,8 @@ Below are instructions for installing and using this package.
 You can use the `REQUIREMENTS.txt` file to setup the environment. The routine is as below:
 
 ```
-conda create --name MY_NMF_ENV --file REQUIREMENTS.txt
-source activate MY_NMF_ENV
+conda create --name MY_ENV --file REQUIREMENTS.txt
+source activate MY_ENV
 ```
 
 ## Run the testing
