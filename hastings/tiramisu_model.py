@@ -1,15 +1,9 @@
 from keras.engine.topology import Input
 from keras import initializers
-from keras.applications.resnet50 import ResNet50, decode_predictions, conv_block, identity_block
-from keras.applications.vgg16 import VGG16
-from keras.preprocessing import image
-from keras.preprocessing.sequence import pad_sequences
 from keras.models import Model, Sequential
 from keras.layers import *
 from keras.optimizers import Adam
 from keras.regularizers import l2
-from keras.utils.data_utils import get_file
-from keras.applications.imagenet_utils import decode_predictions, preprocess_input
 import keras
 
 '''
