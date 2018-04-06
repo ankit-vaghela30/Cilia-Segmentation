@@ -2,10 +2,9 @@
 (Ordered alphabetically)
 
 **Ankit Vaghela** - [ankit-vaghela30](https://github.com/ankit-vaghela30)
-- Created prerocessing method to support Tiramisu implementation
-- Created test method
-- Created Tiramisu model
-- Figured out how to add GPU on Google Cloud Platform
+- Created prerocessing method to support Tiramisu implementation (Created a test method for the same)
+- Worked on Tiramisu model
+- Worked on Google Cloud Platform to add GPU
 - Wiki on adding GPU to Google Cloud Platform
 - Wiki on Tiramisu and Unet
 
