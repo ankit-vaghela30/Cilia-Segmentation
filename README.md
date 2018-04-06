@@ -122,7 +122,7 @@ See [CONTRIBUTORS](https://github.com/dsp-uga/Hastings-p4/blob/master/CONTRIBUTO
 
 [5] Jeremy Howard, Fast.ai deep learning tutorial, https://github.com/fastai/courses/blob/master/deeplearning2/tiramisu-keras.ipynb
 
-[6] Team Canady Unet model, uhttps://github.com/dsp-uga/Canady
+[6] Team Canady Unet model, https://github.com/dsp-uga/Canady/blob/master/unet.py
 
 # License
 
