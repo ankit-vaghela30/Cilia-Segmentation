@@ -33,6 +33,6 @@ def test_convertion():
     h2rgb = pre.hsv2rgb(hsv)
     assert np.shape(h2rgb) == (256, 256, 3)
 
-def test_augment_data(npy_image_path,None,"fit"):
-    images = pre.augment_data(npy_image_path,None,"fit")
+def test_augment_data(npy_image_path,None,"predict"):
+    images = pre.augment_data(npy_image_path,None,"predict")
     assert np.shape(images) == (1824,256,256,1)
