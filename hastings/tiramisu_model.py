@@ -84,5 +84,7 @@ def create_tiramisu(nb_classes, nb_dense_block=6,
 
     x = conv(x, nb_classes, 1, wd, 0)
     _,r,c,f = x.get_shape().as_list()
-    x = Reshape((-1, nb_classes))(x)
-    return Activation('softmax')(x)
+    y= Activation('softmax')(x)
+    model= Model(Input((256,256,3)), y)
+    model.compile(optimizer=Adam(lr=1e-4), loss='binary_crossentropy', metrics=['accuracy'])
+    return model
