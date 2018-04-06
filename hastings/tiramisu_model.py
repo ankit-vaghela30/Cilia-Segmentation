@@ -7,7 +7,7 @@ from keras.regularizers import l2
 import keras
 
 '''
-We used tiramisu model created by Jeremy Howard in his Fast.ai deep learning course. The model can be extracted from
+We used tiramisu model created by Jeremy Howard in his Fast.ai deep learning course. The model was extracted from
 jupyter notebook which is located here: https://github.com/fastai/courses/blob/master/deeplearning2/tiramisu-keras.ipynb
 This model is based on paper titled 'The One Hundred Layers Tiramisu: Fully Convolutional DenseNets for Semantic
 Segmentation' located here: https://arxiv.org/abs/1611.09326
